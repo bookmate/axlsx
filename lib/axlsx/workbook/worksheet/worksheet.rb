@@ -70,7 +70,7 @@ module Axlsx
       @auto_fit_data = []
       self.name = options[:name] || "Sheet" + (index+1).to_s
 
-      @magick_draw = Magick::Draw.new
+      # @magick_draw = Magick::Draw.new
       @cols = SimpleTypedList.new Cell
       @merged_cells = []
 
@@ -420,13 +420,16 @@ module Axlsx
     # @param [Hash] A hash of auto_fit_data
     def auto_width(col)
       return col[:fixed] unless col[:fixed] == nil
+      
+      ## Temporary solution :)
+      return 20
 
-      mdw_count, font_scale, mdw = 0, col[:sz]/11.0, 6.0
-      mdw_count = col[:longest].scan(/./mu).reduce(0) do | count, char |
-        count +=1 if @magick_draw.get_type_metrics(char).max_advance >= mdw
-        count
-      end
-      ((mdw_count * mdw + 5) / mdw * 256) / 256.0 * font_scale
+      # mdw_count, font_scale, mdw = 0, col[:sz]/11.0, 6.0
+      # mdw_count = col[:longest].scan(/./mu).reduce(0) do | count, char |
+      #   count +=1 if @magick_draw.get_type_metrics(char).max_advance >= mdw
+      #   count
+      # end
+      # ((mdw_count * mdw + 5) / mdw * 256) / 256.0 * font_scale
     end
 
     # Something to look into:

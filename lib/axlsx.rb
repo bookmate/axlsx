@@ -25,7 +25,7 @@ require 'axlsx/package.rb'
 
 #required gems
 require 'nokogiri'
-require 'RMagick'
+# require 'RMagick'
 require 'zip/zip'
 
 #core dependencies
